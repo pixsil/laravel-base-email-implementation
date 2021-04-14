@@ -68,6 +68,28 @@ trait EmailTrait
 
         return $text;
     }
+    
+    /**
+     * Pre-build the message.
+     *
+     * @return $this
+     */
+    public function setTemplate()
+    {
+        $this->template = $this->email->template ?: 'emails.base';
+    }
+
+    /**
+     * Build the message.
+     *
+     * @return $this
+     */
+    public function build()
+    {
+        $this->setTemplate();
+
+        return $this->subject($this->email->subject)->markdown($this->template);
+    }
 }
 
 
