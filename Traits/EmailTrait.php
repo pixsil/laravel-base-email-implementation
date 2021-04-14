@@ -17,12 +17,6 @@ trait EmailTrait
      */
     public function setupEmail()
     {
-        // guard always extent
-        if (static::class == 'App\Mail\BaseMailable') {
-            return abort(403);
-        }
-
-
         // get the body text
         $this->email = Email::firstOrCreate(
             ['mailable' => class_basename(static::class)],
