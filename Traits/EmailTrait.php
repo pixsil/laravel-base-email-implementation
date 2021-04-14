@@ -74,7 +74,7 @@ trait EmailTrait
      *
      * @return $this
      */
-    public function setTemplate()
+    private function setTemplate()
     {
         $this->template = $this->email->template ?: 'emails.base';
     }
@@ -84,7 +84,7 @@ trait EmailTrait
      *
      * @return $this
      */
-    public function build()
+    private function build()
     {
         $this->setTemplate();
 
