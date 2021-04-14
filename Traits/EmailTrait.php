@@ -1,14 +1,10 @@
 <?php
 
-
 // version 3
-
 
 namespace App\Traits;
 
-
 use App\Email;
-
 
 trait EmailTrait
 {
