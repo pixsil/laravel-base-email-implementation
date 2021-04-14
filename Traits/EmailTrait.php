@@ -22,7 +22,8 @@ trait EmailTrait
             ['mailable' => class_basename(static::class)],
             [
                 'subject' => class_basename(static::class),
-                'text' => implode(', ', array_keys($this->placeholder_arr ?? []))
+                'text' => implode(', ', array_keys($this->placeholder_arr ?? [])),
+                'template' => 'emails.base',
             ]
         );
 
