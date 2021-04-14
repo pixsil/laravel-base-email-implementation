@@ -18,6 +18,7 @@ class CreateEmailsTable extends Migration
             $table->string('mailable');
             $table->string('subject');
             $table->text('text')->nullable();
+            $table->string('template')->nullable();
             $table->timestamps();
         });
     }
