@@ -39,7 +39,7 @@ class SiteFeedbackCreated extends Mailable
      */
     public function build()
     {
-        $template = $this->email->subject ?? 'mails.base';
+        $template = $this->email->subject ?? 'emails.base';
 
         return $this->subject($this->email->subject)->markdown($template);
     }
