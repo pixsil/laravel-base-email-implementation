@@ -4,7 +4,7 @@
 
 namespace App\Traits;
 
-use App\Email;
+use App\Models\Email;
 
 trait EmailTrait
 {
