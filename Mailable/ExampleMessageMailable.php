@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Mail;
+namespace App\Mailable;
 
 
 use App\Traits\EmailTrait;
