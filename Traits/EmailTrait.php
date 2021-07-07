@@ -11,7 +11,6 @@ trait EmailTrait
     public $email;
     private $placeholder_arr;
 
-
     /**
      * get storage path
      */
@@ -27,13 +26,11 @@ trait EmailTrait
             ]
         );
 
-
         // replace placeholders
         if ($this->placeholder_arr) {
             $this->email->text = $this->replace_placeholders($this->email->text);
         }
     }
-
 
     /**
      * get storage path
@@ -43,19 +40,15 @@ trait EmailTrait
         // get the body text
         foreach ($data_arr as $key => $data) {
 
-
             // write new
             $data_arr['{{'. $key .'}}'] = $data;
-
 
             // unset old
             unset($data_arr[$key]);
         }
 
-
         return $data_arr;
     }
-
 
     /**
      * get storage path
@@ -64,7 +57,6 @@ trait EmailTrait
     {
         // get the body text
         $text = strtr($text, $this->placeholder_arr);
-
 
         return $text;
     }
@@ -92,12 +84,10 @@ trait EmailTrait
     }
 }
 
-
 /*
         // set placeholders
         $this->placeholder_arr = [
         ];
-
 
         // set email
         $this->setEmail();
