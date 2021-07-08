@@ -15,6 +15,10 @@ class SiteFeedbackCreated extends Mailable
 {
     use Queueable, SerializesModels, EmailTrait;
 
+    // if you like to use the variables in the email
+    // dont have to assign them anymore
+    public $order;
+    
     private $placeholders = ['{{order_id}}' => 'order.id'];
 
     /**
