@@ -38,6 +38,6 @@ class SiteFeedbackCreated extends Mailable
     {
         $this->setTemplate();
 
-        return $this->subject($this->email->subject)->markdown($this->template);
+        return $this->subject($this->email->subject)->markdown($this->email->template);
     }
 }
