@@ -1,6 +1,6 @@
 <?php
 
-// version 3
+// version 4
 
 namespace App\Traits;
 
@@ -9,13 +9,30 @@ use App\Models\Email;
 trait EmailTrait
 {
     public $email;
-    private $placeholder_arr;
+    public $placeholderData = [];
+    private $template;
 
     /**
      * get storage path
      */
-    public function setupEmail()
+    public function setupEmail($compactObjectArr)
     {
+        // guard always extent
+        if (static::class == 'App\Mail\BaseMailable') {
+            abort(403);
+        }
+
+        // install objects
+        foreach ($compactObjectArr as $name => $object) {
+            $this->$name = $object;
+        }
+
+        // install placeholders
+        foreach ($this->placeholders as $placeholderName => $placeholderValue) {
+            list($object, $key) = explode('.',$placeholderValue);
+            $this->placeholderData[$placeholderName] = $this->$object->$key;
+        }
+
         // get the body text
         $this->email = Email::firstOrCreate(
             ['mailable' => class_basename(static::class)],
@@ -26,8 +43,8 @@ trait EmailTrait
             ]
         );
 
-        // replace placeholders
-        if ($this->placeholder_arr) {
+        // if we have placeholders to replace
+        if ($this->placeholderData) {
             $this->email->text = $this->replace_placeholders($this->email->text);
         }
     }
@@ -56,11 +73,11 @@ trait EmailTrait
     public function replace_placeholders($text)
     {
         // get the body text
-        $text = strtr($text, $this->placeholder_arr);
+        $text = strtr($text, $this->placeholderData);
 
         return $text;
     }
-    
+
     /**
      * Pre-build the message.
      *
@@ -84,11 +101,10 @@ trait EmailTrait
     }
 }
 
-/*
-        // set placeholders
-        $this->placeholder_arr = [
-        ];
-
-        // set email
-        $this->setEmail();
-*/
+    /*
+            // set placeholders
+            $this->placeholder_arr = [
+            ];
+            // set email
+            $this->setEmail();
+    */
