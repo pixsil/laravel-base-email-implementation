@@ -15,20 +15,17 @@ class SiteFeedbackCreated extends Mailable
 {
     use Queueable, SerializesModels, EmailTrait;
 
+    private $placeholders = ['{{order_id}}' => 'order.id'];
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(Array $data_arr = [])
+    public function __construct($compactObjectArr)
     {
-        // set placeholders
-        $this->placeholder_arr = $this->to_placeholder_arr($data_arr);
-
-
         // set email
-        $this->setupEmail();
+        $this->setupEmail($compactObjectArr);
     }
 
 
