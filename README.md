@@ -37,6 +37,11 @@ mkdir resources/views/emails
 wget -O resources/views/emails/base.blade.php https://raw.githubusercontent.com/pixsil/laravel-base-email-implementation/main/Views/base.blade.php
 ```
 
+Run migrations for the email setting table
+```bash
+artisan migrate
+```
+
 Add this to your app.js
 ```bash
 require('./tools/vue-form/vue-form.js');
