@@ -47,5 +47,5 @@ artisan migrate
 In controller:
 ```php
 // send email
-Mail::to('email@address.com')->send(new GeneralMailable([$contact_log]));
+Mail::to('email@address.com')->send(new GeneralMailable('identifier', [$contact_log]));
 ```
