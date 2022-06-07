@@ -47,5 +47,5 @@ artisan migrate
 In controller:
 ```php
 // send email
-Mail::to($user)->send(new ExampleMessage($assignment->toArray()));
+Mail::to('email@address.com')->send(new GeneralMailable([$contact_log]));
 ```
