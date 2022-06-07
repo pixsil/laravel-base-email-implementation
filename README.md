@@ -42,12 +42,6 @@ Run migrations for the email setting table
 artisan migrate
 ```
 
-Add this to your app.js
-```bash
-require('./tools/vue-form/vue-form.js');
-require('./tools/vue-form/vue-error.js');
-```
-
 ## Usage
 
 In controller:
