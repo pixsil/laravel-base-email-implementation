@@ -50,9 +50,3 @@ In controller:
 // send email
 Mail::to($user)->send(new ExampleMessage($assignment->toArray()));
 ```
-
-## Additional knowledge
-
-
-## Example
-
