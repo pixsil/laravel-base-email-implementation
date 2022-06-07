@@ -13,15 +13,11 @@ You can use these files to start real quick with a base email implementation. Th
 
 ## Donate
 
+Find this project useful? You can support me with a Paypal donation:
 
-Find this project useful? You can support me on Patreon
-
-
-https://www.patreon.com/pixsil
-
+[Make Paypal Donation](https://www.paypal.com/donate/?hosted_button_id=2XCS6R3CTC5BA)
 
 ## Installation
-
 
 For a quick install, run this from your project root:
 ```bash
@@ -41,13 +37,11 @@ mkdir resources/views/emails
 wget -O resources/views/emails/base.blade.php https://raw.githubusercontent.com/pixsil/laravel-base-email-implementation/main/Views/base.blade.php
 ```
 
-
 Add this to your app.js
 ```bash
 require('./tools/vue-form/vue-form.js');
 require('./tools/vue-form/vue-error.js');
 ```
-
 
 ## Usage
 
@@ -57,9 +51,7 @@ In controller:
 Mail::to($user)->send(new ExampleMessage($assignment->toArray()));
 ```
 
-
 ## Additional knowledge
-
 
 
 ## Example
