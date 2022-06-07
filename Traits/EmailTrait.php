@@ -108,7 +108,7 @@ trait EmailTrait
      */
     private function setTemplate()
     {
-        $this->template = $this->email->template ?: 'emails.base';
+        $this->template = $this->email->template ?: 'emails.general';
     }
 
     /**
