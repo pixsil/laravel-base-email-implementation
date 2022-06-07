@@ -31,10 +31,10 @@ mkdir app/Traits
 wget -O app/Traits/EmailTrait.php https://raw.githubusercontent.com/pixsil/laravel-base-email-implementation/main/Traits/EmailTrait.php
 
 mkdir app/Mailable
-wget -O app/Mailable/ExampleMailable.php https://raw.githubusercontent.com/pixsil/laravel-base-email-implementation/main/Mailable/ExampleMessageMailable.php
+wget -O app/Mailable/GeneralMailable.php https://raw.githubusercontent.com/pixsil/laravel-base-email-implementation/main/Mailable/GeneralMailable.php
 
 mkdir resources/views/emails
-wget -O resources/views/emails/base.blade.php https://raw.githubusercontent.com/pixsil/laravel-base-email-implementation/main/Views/base.blade.php
+wget -O resources/views/emails/genaral.blade.php https://raw.githubusercontent.com/pixsil/laravel-base-email-implementation/main/Views/genaral.blade.php
 ```
 
 Run migrations for the email setting table
