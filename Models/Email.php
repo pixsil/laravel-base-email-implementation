@@ -1,5 +1,7 @@
 <?php
 
+// version 2
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -7,5 +9,5 @@ use Illuminate\Database\Eloquent\Model;
 class Email extends Model
 {
     //
-    public $fillable = ['mailable', 'subject', 'text', 'template'];
+    public $fillable = ['identifier', 'mailable', 'subject', 'text', 'template'];
 }
