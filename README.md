@@ -34,7 +34,7 @@ mkdir app/Mailable
 wget -O app/Mailable/GeneralMailable.php https://raw.githubusercontent.com/pixsil/laravel-base-email-implementation/main/Mailable/GeneralMailable.php
 
 mkdir resources/views/emails
-wget -O resources/views/emails/genaral.blade.php https://raw.githubusercontent.com/pixsil/laravel-base-email-implementation/main/Views/genaral.blade.php
+wget -O resources/views/emails/general.blade.php https://raw.githubusercontent.com/pixsil/laravel-base-email-implementation/main/Views/general.blade.php
 ```
 
 Run migrations for the email setting table
