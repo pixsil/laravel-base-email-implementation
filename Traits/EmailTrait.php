@@ -1,6 +1,6 @@
 <?php
 
-// version 5
+// version 5.1
 
 namespace App\Traits;
 
@@ -18,16 +18,16 @@ trait EmailTrait
      *
      * @return void
      */
-    public function __construct($object_arr)
+    public function __construct($identifier, $object_arr)
     {
         // set email
-        $this->setupEmail($object_arr);
+        $this->setupEmail($identifier, $object_arr);
     }
 
     /**
      * get storage path
      */
-    public function setupEmail($object_arr)
+    public function setupEmail($identifier, $object_arr)
     {
         // guard always extent
         if (static::class == 'App\Mail\BaseMailable') {
@@ -57,11 +57,11 @@ trait EmailTrait
 
         // get the body text
         $this->email = Email::firstOrCreate(
-            ['mailable' => class_basename(static::class)],
+            ['identifier' => $identifier],
             [
                 'subject' => class_basename(static::class),
                 'text' => implode(', ', array_keys($this->placeholder_data ?? [])),
-                'template' => 'emails.genaral',
+                'template' => 'emails.general',
             ]
         );
 
