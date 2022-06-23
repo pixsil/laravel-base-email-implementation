@@ -1,6 +1,6 @@
 <?php
 
-// version 5.1
+// version 6
 
 namespace App\Traits;
 
@@ -18,7 +18,7 @@ trait EmailTrait
      *
      * @return void
      */
-    public function __construct($identifier, $object_arr)
+    public function __construct($identifier, $object_arr = [])
     {
         // set email
         $this->setupEmail($identifier, $object_arr);
