@@ -1,5 +1,6 @@
 <?php
 
+// version 7 fixed that the classes could be used inside the html
 // version 6
 
 namespace App\Traits;
@@ -34,6 +35,9 @@ trait EmailTrait
             abort(403);
         }
 
+        // set available to send with the build command
+        $this->object_arr = $object_arr;
+
         // install objects so you can use them inside the email
         foreach ($object_arr as $key => $object) {
 
@@ -41,7 +45,9 @@ trait EmailTrait
             $object_name = is_string($key) ? $key : $object->getTable();
 
             // set as object
-            $this->$object_name = $object;
+            // this does not work, objects must be defined as public in the class file
+            // so doing this now with the with() function on the build
+            // $this->$object_name = $object;
 
             // also fill an array with all the possible markers
             foreach ($object->getAttributes() as $column => $attribute) {
@@ -120,6 +126,8 @@ trait EmailTrait
     {
         $this->setTemplate();
 
-        return $this->subject($this->email->subject)->markdown($this->template);
+        return $this->subject($this->email->subject)
+            ->markdown($this->template)
+            ->with($this->object_arr);
     }
 }
