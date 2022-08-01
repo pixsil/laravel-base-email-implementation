@@ -50,7 +50,7 @@ In controller:
 Mail::to('email@address.com')->send(new GeneralMailable('identifier', [$contact_log]));
 ```
 
-This implementation makes alle the objects given as array available to use as marker. So in the above example it is possible to use markers like:
+This implementation makes alle the objects given as array available to use as marker. So in the above example it is possible to use markers like. The first section is the key name given in the array or if this is not set, it is the table name of the object.
 
 ```php
 {{contact_log.id}}
