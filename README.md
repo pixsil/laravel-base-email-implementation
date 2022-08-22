@@ -50,9 +50,35 @@ In controller:
 Mail::to('email@address.com')->send(new GeneralMailable('identifier', [$contact_log]));
 ```
 
-This implementation makes alle the objects given as array available to use as marker. So in the above example it is possible to use markers like. The first section is the key name given in the array or if this is not set, it is the table name of the object.
-
+This implementation makes alle the objects given as array available to use as marker. So in the above example it is possible to use markers like. The first section is the key name given in the array or if this is not set, it is the table name of the object. So for the above example the marker names will be:
 ```php
 {{contact_log.id}}
 {{contact_log.message}}
+```
+
+And when using a different marker name:
+
+```php
+// send email
+Mail::to('email@address.com')->send(new GeneralMailable('identifier', ['logs' => $contact_log]));
+```
+
+Markers will be:
+
+```php
+{{logs.id}}
+{{logs.message}}
+```
+
+If you want to add some extra data that is not an object, you can add this as thirth paramters. Like so:
+
+```php
+// send email
+Mail::to('email@address.com')->send(new GeneralMailable('identifier', [$contact_log], ['some_url' => 'https://my-side.com']));
+```
+
+And in your template the marker will be:
+
+```php
+{{some_url}}
 ```
