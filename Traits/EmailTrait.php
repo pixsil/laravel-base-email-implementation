@@ -1,5 +1,6 @@
 <?php
 
+// version 8 added parameter for extra data
 // version 7 fixed that the classes could be used inside the html
 // version 6
 
@@ -13,29 +14,32 @@ trait EmailTrait
     public $placeholder_data = [];
     private $template;
     private $object_arr = [];
+    private $extra_data_arr = [];
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($identifier, $object_arr = [])
+    public function __construct($identifier, $object_arr = [], $extra_data_arr = [])
     {
         // set email
+        $this->setObjectsAsPlaceholders($object_arr);
+        $this->setExtraDataAsPlaceholders($extra_data_arr);
         $this->setupEmail($identifier, $object_arr);
     }
 
     /**
-     * get storage path
+     *
      */
-    public function setupEmail($identifier, $object_arr)
+    private function setObjectsAsPlaceholders($object_arr)
     {
         // guard always extent
         if (static::class == 'App\Mail\BaseMailable') {
             abort(403);
         }
 
-        // set available to send with the build command
+        // set available to send with the build command "->with()"
         $this->object_arr = $object_arr;
 
         // install objects so you can use them inside the email
@@ -54,12 +58,37 @@ trait EmailTrait
                 $this->placeholder_data['{{'. $object_name .'.'. $column .'}}'] = $attribute;
             }
         }
+    }
+    /**
+     *
+     */
+    private function setExtraDataAsPlaceholders($extra_data_arr)
+    {
+        // guard always extent
+        if (static::class == 'App\Mail\BaseMailable') {
+            abort(403);
+        }
 
-        // // install placeholders
-        // foreach ($this->placeholders as $placeholderName => $placeholderValue) {
-        //     list($object, $key) = explode('.',$placeholderValue);
-        //     $this->placeholder_data[$placeholderName] = $this->$object->$key;
-        // }
+        // set available to send with the build command "->with()"
+        $this->extra_data_arr = $extra_data_arr;
+
+        // install objects so you can use them inside the email
+        foreach ($extra_data_arr as $key => $value) {
+
+            //
+            $this->placeholder_data['{{'. $key .'}}'] = $value;
+        }
+    }
+
+    /**
+     *
+     */
+    private function setupEmail($identifier, $object_arr)
+    {
+        // guard always extent
+        if (static::class == 'App\Mail\BaseMailable') {
+            abort(403);
+        }
 
         // get the body text
         $this->email = Email::firstOrCreate(
@@ -128,6 +157,7 @@ trait EmailTrait
 
         return $this->subject($this->email->subject)
             ->markdown($this->template)
-            ->with($this->object_arr);
+            ->with($this->object_arr)
+            ->with($this->extra_data_arr);
     }
 }
