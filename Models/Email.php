@@ -1,6 +1,6 @@
 <?php
 
-// version 2
+// version 2.1
 
 namespace App\Models;
 
