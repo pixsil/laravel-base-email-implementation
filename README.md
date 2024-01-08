@@ -66,8 +66,8 @@ Mail::to('email@address.com')->send(new GeneralMailable('identifier', ['logs' =>
 Or in the blade files like:
 
 ```php
-$logs.id
-$logs.message
+{{ $logs.id }}
+{{ $logs.message }}
 ```
 
 Markers will be:
@@ -80,8 +80,8 @@ Markers will be:
 Or in the blade files like:
 
 ```php
-$logs.id
-$logs.message
+{{ $logs.id }}
+{{ $logs.message }}
 ```
 
 If you want to add some extra data that is not an object, you can add this as thirth paramters. Like so:
@@ -100,5 +100,5 @@ And in your template the marker will be:
 Or in the blade files like:
 
 ```php
-$some_url
+{{ $some_url }}
 ```
