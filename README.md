@@ -31,7 +31,7 @@ mkdir app/Traits
 wget -O app/Traits/EmailTrait.php https://raw.githubusercontent.com/pixsil/laravel-base-email-implementation/main/Traits/EmailTrait.php
 
 mkdir app/Mailable
-wget -O app/Mailable/BaseMailable.php https://raw.githubusercontent.com/pixsil/laravel-base-email-implementation/main/Mail/BaseMailable.php
+wget -O app/Mailable/GeneralMailable.php https://raw.githubusercontent.com/pixsil/laravel-base-email-implementation/main/Mail/GeneralMailable.php
 
 mkdir resources/views/mail
 wget -O resources/views/mail/general.blade.php https://raw.githubusercontent.com/pixsil/laravel-base-email-implementation/main/Views/general.blade.php
