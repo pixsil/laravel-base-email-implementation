@@ -63,11 +63,25 @@ And when using a different marker name:
 Mail::to('email@address.com')->send(new GeneralMailable('identifier', ['logs' => $contact_log]));
 ```
 
+Or in the blade files like:
+
+```php
+$logs.id
+$logs.message
+```
+
 Markers will be:
 
 ```php
 {{logs.id}}
 {{logs.message}}
+```
+
+Or in the blade files like:
+
+```php
+$logs.id
+$logs.message
 ```
 
 If you want to add some extra data that is not an object, you can add this as thirth paramters. Like so:
@@ -81,4 +95,10 @@ And in your template the marker will be:
 
 ```php
 {{some_url}}
+```
+
+Or in the blade files like:
+
+```php
+$some_url
 ```
