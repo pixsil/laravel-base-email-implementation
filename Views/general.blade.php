@@ -1,8 +1,7 @@
-@component('mail::message')
+<x-mail::message>
 
 {!! $email->text !!}
 
-Thanks,
-
+Thanks,<br>
 {{ config('app.name') }}
-@endcomponent
+</x-mail::message>
