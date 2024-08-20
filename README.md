@@ -102,3 +102,20 @@ Or in the blade files like:
 ```php
 {{ $some_url }}
 ```
+
+There is already a functionality with one button in the general layout. This can be used with this adiditional parameters. Like this:
+
+```php
+  Mail::to($order->email)->send(
+      new GeneralMailable(
+          'identifier',
+          [$order],
+          [
+              'button' => [
+                  'text' => 'text',
+                  'url' => 'http://site.example.com',
+              ]
+          ]
+      )
+  );
+```
