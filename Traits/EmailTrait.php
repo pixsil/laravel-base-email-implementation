@@ -1,5 +1,6 @@
 <?php
 
+// version 9 fixed folder for emails
 // version 8 added parameter for extra data
 // version 7 fixed that the classes could be used inside the html
 // version 6
@@ -7,6 +8,8 @@
 namespace App\Traits;
 
 use App\Models\Email;
+use Illuminate\Mail\Mailables\Content;
+use Illuminate\Mail\Mailables\Envelope;
 
 trait EmailTrait
 {
@@ -34,11 +37,6 @@ trait EmailTrait
      */
     private function setObjectsAsPlaceholders($object_arr)
     {
-        // guard always extent
-        if (static::class == 'App\Mail\BaseMailable') {
-            abort(403);
-        }
-
         // set available to send with the build command "->with()"
         $this->object_arr = $object_arr;
 
@@ -64,11 +62,6 @@ trait EmailTrait
      */
     private function setExtraDataAsPlaceholders($extra_data_arr)
     {
-        // guard always extent
-        if (static::class == 'App\Mail\BaseMailable') {
-            abort(403);
-        }
-
         // set available to send with the build command "->with()"
         $this->extra_data_arr = $extra_data_arr;
 
@@ -85,11 +78,6 @@ trait EmailTrait
      */
     private function setupEmail($identifier, $object_arr)
     {
-        // guard always extent
-        if (static::class == 'App\Mail\BaseMailable') {
-            abort(403);
-        }
-
         // get the body text
         $this->email = Email::firstOrCreate(
             ['identifier' => $identifier],
@@ -143,7 +131,7 @@ trait EmailTrait
      */
     private function setTemplate()
     {
-        $this->template = $this->email->template ?: 'emails.general';
+        $this->template = $this->email->template ?: 'mail.general';
     }
 
     /**
