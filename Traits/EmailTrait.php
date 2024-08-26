@@ -1,5 +1,6 @@
 <?php
 
+// version 10.1 replaced markers in button
 // version 10 added a button functionality
 // version 9 fixed folder for emails
 // version 8 added parameter for extra data
@@ -145,9 +146,14 @@ trait EmailTrait
 
         // replace buttons
         // [Click here](https://example.com){button}
+
         $this->email->text = preg_replace_callback('/\[(.*?)\]\((.*?)\)\{button\}/', function ($matches) {
-            return View::make('vendor.mail.html.button', ['url' => $matches[2] ?? ''])
-                ->with('slot', $matches[1] ?? '')
+
+            $url = $this->replace_placeholders($matches[2] ?? '');
+            $title = $this->replace_placeholders($matches[1] ?? '');
+
+            return View::make('vendor.mail.html.button', ['url' => $url])
+                ->with('slot', $title)
                 ->render();
         }, $this->email->text);
 
