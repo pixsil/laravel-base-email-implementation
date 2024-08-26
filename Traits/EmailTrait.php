@@ -1,5 +1,6 @@
 <?php
 
+// version 10 added a button functionality
 // version 9 fixed folder for emails
 // version 8 added parameter for extra data
 // version 7 fixed that the classes could be used inside the html
@@ -8,8 +9,7 @@
 namespace App\Traits;
 
 use App\Models\Email;
-use Illuminate\Mail\Mailables\Content;
-use Illuminate\Mail\Mailables\Envelope;
+use Illuminate\Support\Facades\View;
 
 trait EmailTrait
 {
@@ -142,6 +142,14 @@ trait EmailTrait
     public function build()
     {
         $this->setTemplate();
+
+        // replace buttons
+        // [Click here](https://example.com){button}
+        $this->email->text = preg_replace_callback('/\[(.*?)\]\((.*?)\)\{button\}/', function ($matches) {
+            return View::make('vendor.mail.html.button', ['url' => $matches[2] ?? ''])
+                ->with('slot', $matches[1] ?? '')
+                ->render();
+        }, $this->email->text);
 
         return $this->subject($this->email->subject)
             ->markdown($this->template)
