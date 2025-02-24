@@ -85,7 +85,7 @@ trait EmailTrait
             [
                 'subject' => class_basename(static::class),
                 'text' => implode(', ', array_keys($this->placeholder_data ?? [])),
-                'template' => 'mail.general',
+                'template' => 'emails.general',
             ]
         );
 
@@ -132,7 +132,7 @@ trait EmailTrait
      */
     private function setTemplate()
     {
-        $this->template = $this->email->template ?: 'mail.general';
+        $this->template = $this->email->template ?: 'emails.general';
     }
 
     /**
